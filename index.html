@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskflow — To-Do List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-name">
+        <div class="brand-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="2" y="2" width="6" height="6" rx="2" fill="white" opacity="0.9"/>
+            <rect x="10" y="2" width="6" height="6" rx="2" fill="white" opacity="0.5"/>
+            <rect x="2" y="10" width="6" height="6" rx="2" fill="white" opacity="0.5"/>
+            <rect x="10" y="10" width="6" height="6" rx="2" fill="white" opacity="0.2"/>
+          </svg>
+        </div>
+        Taskflow
+      </div>
+      <div class="brand-sub">Your tasks, always in order.</div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num accent" id="stat-total">0</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="stat-active">0</div>
+        <div class="stat-label">Active</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num green" id="stat-done">0</div>
+        <div class="stat-label">Done</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INPUT -->
+  <div class="input-card" id="input-card">
+    <input
+      class="task-input"
+      id="task-input"
+      type="text"
+      placeholder="Add a new task… press Enter to save"
+      maxlength="200"
+      autocomplete="off"
+    />
+    <div class="priority-pick" id="prio-pick">
+      <button class="prio-btn" data-p="low" title="Low priority">●</button>
+      <button class="prio-btn active" data-p="medium" title="Medium priority">●</button>
+      <button class="prio-btn" data-p="high" title="High priority">●</button>
+    </div>
+    <button class="add-btn" id="add-btn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Add Task</span>
+    </button>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <svg class="search-icon" width="15" height="15" viewBox="0 0 15 15" fill="none">
+      <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M10 10l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <input class="search-input" id="search-input" type="text" placeholder="Search tasks… (Ctrl+K)">
+  </div>
+
+  <!-- FILTER + SORT -->
+  <div class="filter-bar">
+    <div class="filter-tabs" role="tablist">
+      <button class="tab active" data-filter="all" role="tab">All</button>
+      <button class="tab" data-filter="active" role="tab">Active</button>
+      <button class="tab" data-filter="completed" role="tab">Completed</button>
+    </div>
+    <div class="filter-right">
+      <select class="sort-select" id="sort-select">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="priority">By priority</option>
+        <option value="alpha">A → Z</option>
+      </select>
+      <button class="clear-btn" id="clear-btn">Clear done</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progress-wrap">
+    <span class="progress-label" id="progress-label">0 of 0 done</span>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <span class="progress-pct" id="progress-pct">0%</span>
+  </div>
+
+  <!-- LIST -->
+  <div class="task-list" id="task-list" role="list"></div>
+
+  <!-- EMPTY -->
+  <div class="empty" id="empty">
+    <div class="empty-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="9" y="3" width="6" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="empty-title" id="empty-title">No tasks yet</div>
+    <div class="empty-sub" id="empty-sub">Add your first task above and start getting things done.</div>
+  </div>
+
+</div>
+
+<!-- TOASTS -->
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
